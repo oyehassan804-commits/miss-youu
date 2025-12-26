@@ -1,0 +1,291 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Heartfelt Apology</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans:ital,wght@1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; background-color: #0b0e14; overflow: hidden; color: white; }
+        
+        .heading-syne { font-family: 'Syne', sans-serif; letter-spacing: -0.02em; }
+        .text-work { font-family: 'Work Sans', sans-serif; font-style: italic; }
+
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle var(--duration) infinite ease-in-out; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        .gradient-text {
+            background: linear-gradient(to right, #f472b6, #fb7185, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* Fast Fade Animation */
+        .fade-text {
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+
+        @media (max-width: 640px) {
+            .heading-syne { font-size: 1.4rem !important; line-height: 1.2; }
+            .text-work { font-size: 1rem !important; }
+            .glass-card { padding: 2.5rem 1.2rem 1.5rem !important; width: 92% !important; margin-top: 20px; }
+            .btn-modern { padding: 10px 25px !important; font-size: 0.95rem !important; }
+            .gift-icon { font-size: 70px !important; }
+            .polaroid img { width: 110px !important; height: 110px !important; }
+            .bear-img { width: 130px !important; }
+        }
+
+        .page { 
+            position: absolute; inset: 0; width: 100%; height: 100%; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, transform 0.8s ease; 
+            padding: 20px; text-align: center;
+        }
+        .hidden-page { display: none !important; opacity: 0; transform: translateY(30px); }
+
+        .glass-card {
+            background: rgba(255, 182, 193, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 35px;
+            padding: 3.5rem 2rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        .polaroid {
+            background: white; padding: 10px 10px 30px 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            transform: rotate(var(--rotation));
+        }
+
+        .float-bear { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .btn-modern {
+            background: rgba(244, 114, 182, 0.15);
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            padding: 14px 40px;
+            border-radius: 100px;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.2);
+        }
+        .btn-modern:hover { background: rgba(244, 114, 182, 0.35); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(244, 114, 182, 0.4); }
+
+        .flower { position: absolute; top: -50px; pointer-events: none; z-index: 5; animation: fall linear forwards; filter: drop-shadow(0 0 5px rgba(255,192,203,0.5)); }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        .magic-emoji {
+            position: fixed; pointer-events: none; z-index: 9999;
+            filter: drop-shadow(0 0 10px currentColor) saturate(2);
+            animation: magic-move 1.8s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+        }
+        @keyframes magic-move {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(var(--scale)) rotate(var(--rot)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="star-container" class="fixed inset-0 pointer-events-none"></div>
+    <div id="flower-field" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <div id="welcome-page" class="page">
+        <div class="glass-card">
+            <h1 class="heading-syne text-pink-300 text-3xl md:text-5xl mb-6">Hello Churail 👋</h1>
+            <p class="text-work text-pink-100 text-lg md:text-2xl mb-10">I have made something special for you My Pasandedah Aurat...</p>
+            <button onclick="nav('welcome-page', 'page1')" class="btn-modern text-pink-50 text-xl">See 👀</button>
+        </div>
+    </div>
+
+    <div id="page1" class="page hidden-page">
+        <div class="mb-8 float-bear">
+            <img src="teddy-walking.gif" class="bear-img w-36 md:w-48">
+        </div>
+        <div class="space-y-4 text-work px-4 relative z-10">
+            <p class="text-pink-100 text-lg md:text-2xl">It's late night… I've been walking for hours…</p>
+            <p class="text-pink-200 text-sm md:text-lg opacity-70">I'm holding something heavy… not in hands, but in heart…</p>
+        </div>
+        <button onclick="nav('page1', 'page2')" class="btn-modern mt-10 text-work text-pink-50 relative z-10">Let me talk...</button>
+    </div>
+
+    <div id="page2" class="page hidden-page">
+        <div class="glass-card">
+            <h1 class="heading-syne text-pink-300 text-xl md:text-3xl mb-6">My Sorry Letter...</h1>
+            <div class="bg-white/90 p-4 rounded-3xl inline-block mb-6 shadow-inner">
+                <img src="sad-teddy.gif" class="w-24 md:w-32">
+            </div>
+            <p class="text-work text-base md:text-xl text-pink-50 italic mb-8">I've been sitting here for hours, trying to find the right words...</p>
+            <button onclick="nav('page2', 'page3')" class="btn-modern text-pink-100">Continue reading...</button>
+        </div>
+    </div>
+
+    <div id="page3" class="page hidden-page">
+        <div class="mb-8">
+            <img src="notice-me.gif" class="w-44 md:w-64 mx-auto">
+        </div>
+        <div class="min-h-[120px] flex items-center justify-center px-6">
+            <h2 id="fade-box" class="text-work text-pink-200 text-2xl md:text-4xl leading-tight fade-text"></h2>
+        </div>
+        <button onclick="nav('page3', 'page4')" class="btn-modern mt-10 text-pink-100">Read my letter...</button>
+    </div>
+
+    <div id="page4" class="page hidden-page overflow-y-auto">
+        <p class="text-work text-pink-100 text-base md:text-xl mb-8">I've been staring at these all night... 🌙</p>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-10 mb-8">
+            <div class="polaroid" style="--rotation: -4deg"><img src="gallery.jpg" class="w-28 h-28 md:w-40 md:h-40 object-cover"></div>
+            <div class="polaroid" style="--rotation: 4deg"><img src="album.jpg" class="w-28 h-28 md:w-40 md:h-40 object-cover"></div>
+        </div>
+        <div class="space-y-3 text-work max-w-xs md:max-w-md mx-auto">
+            <p class="text-pink-200 text-base md:text-xl">You're so beautiful, but I still hurt you...</p>
+            <p class="text-pink-300 text-xl md:text-3xl font-bold">I'm so sorry. 💔</p>
+        </div>
+        <button onclick="nav('page4', 'page5')" class="btn-modern mt-10 text-pink-50">I need you...</button>
+    </div>
+
+    <div id="page5" class="page hidden-page">
+        <div class="mb-6">
+            <img src="teddy-hug.gif" class="w-44 md:w-56">
+        </div>
+        <div class="space-y-4 text-work mb-10 px-6">
+            <p class="text-pink-100 text-lg md:text-2xl">I don’t need anything fancy right now...</p>
+            <p class="text-pink-200 text-base md:text-xl opacity-80">Just your arms around me, that’s all I want. 💞</p>
+        </div>
+        <button onclick="sendMagicHug()" class="btn-modern text-pink-50 font-bold tracking-wide">Send a hug</button>
+    </div>
+
+    <div id="page6" class="page hidden-page">
+        <h1 class="heading-syne text-pink-300 text-xl md:text-3xl mb-12 px-6">I have something special for you... 💝</h1>
+        <div onclick="nav('page6', 'page7')" class="cursor-pointer hover:scale-110 transition-transform active:scale-95">
+            <span class="gift-icon text-[70px] md:text-[120px] drop-shadow-2xl">🎁</span>
+        </div>
+        <p class="text-work text-pink-100 opacity-50 mt-10 animate-pulse">Click to open! ✨</p>
+    </div>
+
+    <div id="page7" class="page hidden-page">
+        <div class="glass-card">
+            <h1 class="heading-syne text-pink-300 text-lg md:text-2xl mb-6">For You Moti... 💝</h1>
+            <div class="mb-4">
+                <img src="teddy-giving-flower.gif" class="w-36 md:w-48 mx-auto">
+            </div>
+            <div class="text-work space-y-4">
+                <h2 class="text-pink-100 text-lg md:text-2xl">This rose will never fade... 🌹</h2>
+                <p class="text-pink-100/80 text-sm md:text-lg leading-relaxed px-2">
+                    Just like my love for you. I promise to cherish you every single day. 💖
+                </p>
+                <button onclick="nav('page7', 'page-goodbye')" class="btn-modern mt-4">Hassan</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-goodbye" class="page hidden-page">
+        <div class="glass-card">
+            <div class="mb-6">
+                <img src="hug.gif" class="w-40 md:w-56 mx-auto rounded-2xl">
+            </div>
+            <h1 class="heading-syne text-4xl md:text-6xl mb-4 gradient-text">Good Bye <br> Churail</h1>
+            <p class="text-work text-pink-100/60 text-sm italic">Hassan ✨</p>
+        </div>
+    </div>
+
+    <script>
+        const sentences = [
+            "I know I hurt you...",
+            "You didn't deserve that...",
+            "I was wrong and I am so sorry..."
+        ];
+        let sentenceIdx = 0;
+
+        function fastFadeEffect() {
+            const textEl = document.getElementById('fade-box');
+            if(!textEl) return;
+
+            // Step 1: Set text and Fade In
+            textEl.textContent = sentences[sentenceIdx];
+            textEl.classList.add('fade-in');
+
+            // Step 2: Wait 1.5 seconds, then Fade Out
+            setTimeout(() => {
+                textEl.classList.remove('fade-in');
+                
+                // Step 3: Wait for fade out animation to finish, then change index and repeat
+                setTimeout(() => {
+                    sentenceIdx = (sentenceIdx + 1) % sentences.length;
+                    fastFadeEffect();
+                }, 500); // fade duration
+
+            }, 1500); // how long to show text
+        }
+
+        function nav(curr, next) {
+            const currentEl = document.getElementById(curr);
+            const nextEl = document.getElementById(next);
+            currentEl.style.opacity = '0';
+            currentEl.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                currentEl.classList.add('hidden-page');
+                nextEl.classList.remove('hidden-page');
+                setTimeout(() => {
+                    nextEl.style.opacity = '1';
+                    nextEl.style.transform = 'translateY(0)';
+                }, 50);
+
+                if(next === 'page3') {
+                    sentenceIdx = 0;
+                    fastFadeEffect();
+                }
+            }, 800);
+        }
+
+        function sendMagicHug() {
+            const items = [{t:'💖', c:'#ff1493'}, {t:'❤️', c:'#ff0000'}, {t:'🌸', c:'#ff69b4'}, {t:'✨', c:'#ffd700'}];
+            for (let i = 0; i < 40; i++) {
+                const item = items[Math.floor(Math.random() * items.length)];
+                const emoji = document.createElement('div');
+                emoji.className = 'magic-emoji';
+                emoji.innerText = item.t;
+                emoji.style.left = '50%'; emoji.style.top = '50%';
+                const angle = Math.random() * Math.PI * 2, velocity = Math.random() * 500 + 200;
+                emoji.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+                emoji.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+                emoji.style.setProperty('--rot', Math.random() * 720 + 'deg');
+                emoji.style.setProperty('--scale', Math.random() * 1.5 + 0.5);
+                document.body.appendChild(emoji);
+                setTimeout(() => emoji.remove(), 1800);
+            }
+            setTimeout(() => nav('page5', 'page6'), 700);
+        }
+
+        const stars = document.getElementById('star-container');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%'; star.style.top = Math.random() * 100 + '%';
+            star.style.width = star.style.height = (Math.random() * 2 + 1) + 'px';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            stars.appendChild(star);
+        }
+
+        setInterval(() => {
+            const f = document.createElement('div');
+            f.className = 'flower';
+            f.innerText = ['🌹', '🌸', '💖', '✨'][Math.floor(Math.random() * 4)];
+            f.style.left = Math.random() * 100 + 'vw';
+            const speed = Math.random() * 4 + 6;
+            f.style.animationDuration = speed + 's';
+            document.getElementById('flower-field').appendChild(f);
+            setTimeout(() => f.remove(), speed * 1000);
+        }, 600);
+    </script>
+</body>
+</html>
